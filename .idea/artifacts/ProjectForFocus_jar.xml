@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProjectForFocus:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProjectForFocus_jar</output-path>
+    <root id="archive" name="ProjectForFocus.jar">
+      <element id="module-output" name="ProjectForFocus" />
+    </root>
+  </artifact>
+</component>

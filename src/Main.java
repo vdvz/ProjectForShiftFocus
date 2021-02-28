@@ -1,22 +1,20 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-
         Sort sort = null;
-        Sort.MODE MODE = null;
-        Sort.TYPE TYPE = null;
+        MODE mode = MODE.INCREASE;
+        TYPE type = null;
         String out = null;
         ArrayList<String> in = new ArrayList<>();
         for (String s: args) {
             switch (s) {
-                case "-a" -> MODE = Sort.MODE.DECREASE;
-                case "-d" -> MODE = Sort.MODE.INCREASE;
-                case "-s" -> TYPE = Sort.TYPE.STRINGS;
-                case "-i" -> TYPE = Sort.TYPE.INTEGERS;
+                case "-a" -> mode = MODE.INCREASE;
+                case "-d" -> mode = MODE.DECREASE;
+                case "-s" -> type = TYPE.STRINGS;
+                case "-i" -> type = TYPE.INTEGERS;
                 default -> {
                     if (out == null) {
                         out = s;
@@ -29,22 +27,29 @@ public class Main {
 
         if(out==null) throw new IllegalArgumentException();
         if(in.size()<1) throw new IllegalArgumentException();
-        if(TYPE == Sort.TYPE.INTEGERS){
+        if(type.equals(TYPE.INTEGERS)){
             try {
-                sort = new SortInt(out, in);
+                if(mode.equals(MODE.INCREASE)){
+                    sort = new SortIntegersIncrease(in, out);
+                }else{
+                    sort = new SortIntegersDecrease(in, out);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else if(TYPE == Sort.TYPE.STRINGS){
+        }else if(type.equals(TYPE.STRINGS)){
             try {
-                sort = new SortStr(out, in);
+                if(mode.equals(MODE.INCREASE)){
+                    sort = new SortStringsIncrease(in, out);
+                }else{
+                    sort = new SortStringsDecrease(in, out);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        assert sort!=null;
-        if(MODE!=null) sort.setSortMode(MODE);
 
+        assert sort != null;
         sort.sort();
 
     }
