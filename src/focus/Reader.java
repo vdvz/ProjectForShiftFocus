@@ -1,21 +1,23 @@
+package focus;
 import java.io.*;
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Reader implements Reader_I{
 
     private final int MAX_ENTRIES_IN;
-    private final ConcurrentLinkedQueue<String> list;
+    private final LinkedList<String> list;
     private final BufferedReader reader;
 
     Reader(String file_name) throws FileNotFoundException {
         reader = new BufferedReader(new FileReader(file_name));
-        list = new ConcurrentLinkedQueue<>();
+        list = new LinkedList<>();
         MAX_ENTRIES_IN = 1000;
     }
 
     Reader(String file_name, int _size) throws FileNotFoundException {
         reader = new BufferedReader(new FileReader(file_name));
-        list = new ConcurrentLinkedQueue<>();
+        list = new LinkedList<>();
         MAX_ENTRIES_IN = _size;
     }
 

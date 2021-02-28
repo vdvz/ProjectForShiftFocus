@@ -1,12 +1,12 @@
+package focus;
 import java.io.EOFException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class SortStringsDecrease extends SortStrings{
 
-    SortStringsDecrease(ArrayList<String> in, String out) throws FileNotFoundException, IOException {
+    SortStringsDecrease(ArrayList<String> in, String out) throws IOException {
         super(in, out);
     }
 
@@ -14,7 +14,10 @@ public class SortStringsDecrease extends SortStrings{
     public String getNext() throws OrderViolationException {
         int maxDeviation = Integer.MIN_VALUE;
         Reader_I reader = null;
-        String maxStr = "";
+        String maxStr;
+        if(lastWrittenStr!=null) {
+            maxStr = lastWrittenStr;
+        } else maxStr = map.values().iterator().next();
 
         for (Map.Entry<Reader_I, String> entry: map.entrySet()) {
             int currentDeviation = entry.getValue().compareTo(maxStr);

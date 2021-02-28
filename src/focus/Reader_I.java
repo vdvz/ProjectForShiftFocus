@@ -1,3 +1,4 @@
+package focus;
 import java.io.EOFException;
 
 public interface Reader_I {

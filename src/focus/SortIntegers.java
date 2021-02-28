@@ -1,8 +1,8 @@
+package focus;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class SortIntegers extends Sort{
 
@@ -10,7 +10,7 @@ public abstract class SortIntegers extends Sort{
     private final Writer_I writer;
     Integer lastWrittenInt = null;
 
-    SortIntegers(ArrayList<String> in, String out) throws FileNotFoundException, IOException {
+    SortIntegers(ArrayList<String> in, String out) throws IOException {
 
         writer = new Writer(out);
 

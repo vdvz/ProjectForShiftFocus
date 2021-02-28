@@ -1,23 +1,23 @@
+package focus;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class SortIntegersIncrease extends SortIntegers {
+public class SortIntegersDecrease extends SortIntegers {
 
-
-    SortIntegersIncrease(ArrayList<String> in, String out) throws FileNotFoundException, IOException {
+    SortIntegersDecrease(ArrayList<String> in, String out) throws FileNotFoundException, IOException {
         super(in, out);
     }
 
     @Override
-    public Integer getNext() throws OrderViolationException {
-        Integer minInt = Integer.MAX_VALUE;
+    public Integer getNext() throws OrderViolationException, IllegalArgumentException {
+        Integer maxInt = Integer.MIN_VALUE;
         Reader_I reader = null;
         for (Map.Entry<Reader_I, Integer> entry: map.entrySet()) {
-            if(entry.getValue() < minInt){
-                minInt = entry.getValue();
+            if(entry.getValue() > maxInt){
+                maxInt = entry.getValue();
                 reader = entry.getKey();
             }
         }
@@ -30,8 +30,8 @@ public class SortIntegersIncrease extends SortIntegers {
             map.remove(reader);
         }
 
-        if(lastWrittenInt!=null && minInt < lastWrittenInt) throw new OrderViolationException();
+        if(lastWrittenInt!=null && maxInt > lastWrittenInt) throw new OrderViolationException();
 
-        return minInt;
+        return maxInt;
     }
 }

@@ -1,5 +1,5 @@
+package focus;
 import java.io.EOFException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public abstract class SortStrings extends Sort{
 
     String lastWrittenStr = null;
 
-    SortStrings(ArrayList<String> in, String out) throws FileNotFoundException, IOException {
+    SortStrings(ArrayList<String> in, String out) throws IOException {
 
         writer = new Writer(out);
 
